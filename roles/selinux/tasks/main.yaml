@@ -1,0 +1,25 @@
+- name: Disable selinux
+  lineinfile:
+    destfile: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: 'SELINUX=disabled'
+  become: yes
+  tags:
+    - selinux
+
+- name: swap off
+  raw: swapoff -a
+
+- name: Disable swap
+  lineinfile:
+    destfile: /etc/fstab
+    regexp: '^dev/mapper/centos-swap'
+    line: '#'
+  become: yes
+
+- name: Stop firewall
+  service:
+    name: firewalld
+    state: stopped
+    enabled: no
+  become: yes

@@ -1,0 +1,10 @@
+[all]
+m1  ansible_user=root ansible_host=10.0.1. ansible_port=22 ip_internal=10.0.1.
+
+[masters]
+m1
+
+[slaves]
+
+[kubectl]
+m1
